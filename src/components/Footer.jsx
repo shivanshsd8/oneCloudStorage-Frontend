@@ -16,10 +16,11 @@ const Footer = () => {
         {/* Contact Info + Address */}
         <div className="flex flex-col items-center gap-3">
           <div className="flex flex-wrap items-center gap-6 justify-center">
-            <div className="flex items-center gap-2">
+            {/* Phone number : */}
+            {/* <div className="flex items-center gap-2">
               <Phone className="text-green-600 h-4 w-4" />
               <span className="font-semibold text-gray-900">+44 7786 495230</span>
-            </div>
+            </div> */}
             <div className="flex items-center gap-2">
               <Mail className="text-green-600 h-4 w-4" />
               <span className="font-semibold text-gray-900">support@neridio.com</span>
@@ -28,16 +29,14 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <MapPin className="text-green-600 h-4 w-4" />
             <span className="text-gray-800 font-medium">
-            630, DHI Innovation Park, Arekere Gate, Bannerghatta Main Road, Bengaluru, Karnataka 560076
+              Neridio Systems Ltd, Tramshed Tech Innovation Station,
+              Old station building, Queensway, Newport, Wales, NP20 4AX
             </span>
           </div>
         </div>
 
         {/* Social Icons */}
         <div className="flex items-center gap-3 justify-center flex-wrap">
-          <a href="#"><Facebook className="bg-white rounded-full p-1 h-7 w-7 shadow" /></a>
-          <a href="#"><Instagram className="bg-white rounded-full p-1 h-7 w-7 shadow" /></a>
-          <a href="#"><Twitter className="bg-white rounded-full p-1 h-7 w-7 shadow" /></a>
           <a
             href="https://www.linkedin.com/company/neridio-systems-ltd/posts/?feedView=all"
             target="_blank"

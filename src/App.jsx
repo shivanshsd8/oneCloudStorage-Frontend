@@ -5,6 +5,7 @@ import OneCloudProvider from './store/context';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
+import SubmitEnquiry from './pages/SubmitEnquiry';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/enquiry" element={<SubmitEnquiry />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </Layout>

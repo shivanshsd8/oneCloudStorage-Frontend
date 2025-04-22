@@ -15,7 +15,7 @@ export default function AboutUs() {
           With our groundbreaking stack, attacks using quantum computing on cryptographic keys become obsolete. We’ve <em>squared the circle</em>—delivering true data privacy, supported by a growing suite of granted and pending <strong>US patents</strong>.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div className="bg-white shadow p-6 rounded">
             <h3 className="text-2xl font-bold text-[#59A033]">$$</h3>
             <p className="text-sm text-gray-600 mt-1">Some statisics</p>
@@ -28,7 +28,7 @@ export default function AboutUs() {
             <h3 className="text-2xl font-bold text-[#59A033]">$$+</h3>
             <p className="text-sm text-gray-600 mt-1">Some other statisics</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

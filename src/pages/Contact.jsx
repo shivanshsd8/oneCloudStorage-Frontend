@@ -29,7 +29,7 @@ const ContactUs = () => {
             Reach out with any questions, concerns, or business inquiries. Our team is here to help you secure your data.
           </p>
           <div className="text-sm text-gray-700 space-y-2">
-            <p><strong>Phone:</strong> +44 7786 495230</p>
+            {/* <p><strong>Phone:</strong> +44 7786 495230</p> */}
             <p><strong>Email:</strong> support@neridio.com</p>
             <p><strong>Address:</strong> Neridio Systems Ltd, Tramshed Tech Innovation Station,<br />Old station building, Queensway, Newport, Wales, NP20 4AX</p>
           </div>
