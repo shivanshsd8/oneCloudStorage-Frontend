@@ -1,12 +1,10 @@
 import zerotrust2 from '../assets/zerotrust2.png';
-import logo2 from '../assets/logo2.png';
 
 import FeaturesGrid from '../components/FeaturesGrid';
 import Flags from '../components/Flags';
 import TechAndReach from '../components/TechReach';
 import AboutUs from './About';
 import ContactUs from './Contact';
-import { Link } from 'react-router-dom';
 
 
 const Home = () => {
@@ -25,17 +23,17 @@ const Home = () => {
           </p>
           <p className="text-base sm:text-2xl font-bold text-gray-700">Our service is Lockin Free </p>
           <div className="flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mt-6">
-            <Link to={'/enquiry'}>
+            <a href={'https://www.onecloudstorage.com/login_AMG.php'}>
               <button className="bg-[#59A033] hover:bg-[#4a8a2a] text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md transition cursor-pointer">
                 Join us now!
               </button>
-            </Link>
+            </a>
           </div>
-          <Link to={'/enquiry'}>
+          <a href='https://www.onecloudstorage.com/login_AMG.php'>
           <button className="border border-gray-400 text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-green-600 hover:text-white cursor-pointer">
             Download Our Zero trust, Invisible cross cloud gateway
           </button>
-          </Link>
+          </a>
         </div>
 
         {/* Image */}
