@@ -45,10 +45,19 @@ const FeaturesGrid = () => {
 
       {/* CTA Button */}
       <div className="mt-12 flex justify-center">
-        <a href='https://www.onecloudstorage.com/login_AMG.php'>
+
+        {/* External form redirecting to /login_AMG.php */}
+        {/* <a href='https://www.onecloudstorage.com/login_AMG.php'>
         <button className="bg-[#59A033] hover:bg-[#4a8a2a] text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md transition cursor-pointer">
           JOIN US NOW!
-        </button></a>
+        </button></a> */}
+
+        {/* Internal Form redirecting to /signupform */}
+        <Link to={'/enquiry'}>
+          <button className="bg-[#59A033] hover:bg-[#4a8a2a] text-white px-8 py-3 rounded-full font-semibold text-lg shadow-md transition cursor-pointer">
+            Join us now!
+          </button>
+        </Link>
       </div>
     </section>
   );

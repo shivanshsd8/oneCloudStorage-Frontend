@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
-import shieldbg from "../assets/shieldbg.png";
+import homeIcon from '../assets/home_icon.png'
 import { Link, useLocation } from "react-router-dom";
 import { OneCloudContext } from "../store/context";
+import medicalnew from '../assets/medicalnew.png'
+import businessnew from '../assets/businessnew.png'
 
 export default function Signin() {
   const { login } = useContext(OneCloudContext);
@@ -44,15 +46,18 @@ export default function Signin() {
   return (
     <section className="bg-[#f5f6f0] py-16 px-6 md:px-12">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div className="text-center md:text-left">
+        <div className="flex flex-col items-center justify-center h-full p-8 rounded-xl ">
           <img
-            src={shieldbg}
-            alt="shieldIcon"
-            className="mx-auto md:mx-0 mb-6 w-full max-w-md"
+            src={homeIcon}
+            alt="Security Icon"
+            className="rounded-full mb-6"
           />
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">
-            Log into your <span className="text-green-600 italic">Security</span> Dashboard
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 text-center">
+            Welcome to your <span className="text-green-600 font-bold">Security Dashboard</span>
           </h2>
+          <p className="text-sm text-gray-500 mt-3 text-center max-w-xs">
+            Manage and monitor your files securely across cloud platforms.
+          </p>
         </div>
 
         <form
@@ -68,7 +73,7 @@ export default function Signin() {
               type="email"
               name="email"
               placeholder="Enter Email"
-              className="w-full py-3 bg-[#f5f6f0] px-4 border border-gray-300 rounded-lg"
+              className="w-full py-3 bg-[#f5f6f0] px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500"
               value={formData.email}
               onChange={handleChange}
               required
@@ -77,28 +82,50 @@ export default function Signin() {
               type="password"
               name="password"
               placeholder="Enter Password"
-              className="w-full py-3 px-4 bg-[#f5f6f0] border border-gray-300 rounded-lg"
+              className="w-full py-3 px-4 bg-[#f5f6f0] border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500"
               value={formData.password}
               onChange={handleChange}
               required
             />
-            <select
-              name="projectType"
-              className="w-full py-3 px-4 bg-[#f5f6f0] border border-gray-300 rounded-lg"
-              value={formData.projectType}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Project Type</option>
-              <option value="Medical">Medical Data Vault</option>
-              <option value="Business">Business Data Vault</option>
-            </select>
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              {/* Medical Vault Card */}
+              {/* Medical Vault Card */}
+              <div
+                onClick={() => setFormData({ ...formData, projectType: "Medical" })}
+                className={`cursor-pointer border rounded-xl p-4 w-full text-center shadow transition ${formData.projectType === "Medical"
+                    ? "border-green-600 ring-2 ring-green-500 bg-green-50"
+                    : "border-gray-300"
+                  }`}
+              >
+                <img
+                  src={medicalnew}
+                  alt="Medical Vault"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+
+              {/* Business Vault Card */}
+              <div
+                onClick={() => setFormData({ ...formData, projectType: "Business" })}
+                className={`cursor-pointer border rounded-xl p-4 w-full text-center shadow transition ${formData.projectType === "Business"
+                    ? "border-green-600 ring-2 ring-green-500 bg-green-50"
+                    : "border-gray-300"
+                  }`}
+              >
+                <img
+                  src={businessnew}
+                  alt="Business Vault"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+
+            </div>
+
             <select
               name="country"
-              className="w-full py-3 px-4 bg-[#f5f6f0] border border-gray-300 rounded-lg"
+              className="w-full py-3 px-4 bg-[#f5f6f0] border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-1 focus:ring-green-500"
               value={formData.country}
               onChange={handleChange}
-              disabled={!!formData.country}
               required
             >
               <option value="">Select Your Country</option>
@@ -113,7 +140,7 @@ export default function Signin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#59A033] hover:bg-[#4a8a2a] text-white py-3 rounded-md font-semibold transition"
+            className="w-full bg-[#59A033] hover:bg-[#4a8a2a] text-white py-3 rounded-md font-semibold transition cursor-pointer"
           >
             {loading ? "Logging in..." : "Submit"}
           </button>
@@ -121,7 +148,7 @@ export default function Signin() {
           <div className="text-center text-sm text-gray-600">
             <p>
               Don’t have an account?{" "}
-              <Link to={'/signup'} className="text-green-600 hover:text-green-700 font-medium">
+              <Link to={'/signup'} className="text-green-600 hover:text-green-700 font-medium cursor-pointer">
                 Sign up
               </Link>
             </p>

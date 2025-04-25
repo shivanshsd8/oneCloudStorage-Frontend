@@ -7,7 +7,7 @@ import { ExternalLink } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
- 
+
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
       <div className="w-[90%] lg:w-[85%] xl:w-[80%] max-w-[1400px] mx-auto px-4 py-4 flex items-center justify-between">
@@ -70,8 +70,13 @@ export default function Navbar() {
           </button>
           <Link to="/" onClick={() => setIsOpen(false)} className="hover:text-[#59A033] transition">Home</Link>
           <Link to="/privacy-policy" onClick={() => setIsOpen(false)} className="hover:text-[#59A033] transition">Privacy Policy</Link>
-          <a href="#" onClick={() => setIsOpen(false)} className="hover:text-[#59A033] transition">Know more</a>
-
+          <a
+            href="https://neridio.com/"
+            target="_blank"
+            onClick={() => setIsOpen(false)}
+            className="hover:text-[#59A033] transition">
+            Know more
+          </a>
           <Link
             to="/signin"
             onClick={() => setIsOpen(false)}

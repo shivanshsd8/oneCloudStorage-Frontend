@@ -14,7 +14,7 @@ export default function OneCloudProvider({ children }) {
         const domainMap = {
             US: "us.onecloudstorage.com",
             UK: "uk.onecloudstorage.com",
-            India: "onecloudstorage.com",
+            India: "www.onecloudstorage.com",
         };
 
         const domain = domainMap[country];
@@ -50,9 +50,48 @@ export default function OneCloudProvider({ children }) {
             return { success: false, message: "Network error or server unavailable." };
         }
     }
+    // Submit Enquiry Form :
+    async function submitAccessRequest({ email, ccode, number, recaptchaToken }) {
+        const url = "https://www.onecloudstorage.com/verifyAMS.php";
+        const formData = new URLSearchParams();
+    
+        formData.append("email1", email);
+        formData.append("ccode", ccode);
+        formData.append("number1", number);
+        formData.append("g-recaptcha-response", recaptchaToken);
+    
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: formData.toString(),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status}`);
+            }
+    
+            const html = await response.text();
+            const extractedEmail = extractEmailFromHTML(html);
+            return { html, extractedEmail };
+        } catch (error) {
+            console.error("Error submitting request:", error);
+            throw error;
+        }
+    }
+    // Helper function to extract mail id from html response from PHP Page;
+    function extractEmailFromHTML(htmlString) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, "text/html");
+        const text = doc.body.textContent;
+        const match = text.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/);
+        return match ? match[0] : null;
+    }
 
     return (
-        <OneCloudContext.Provider value={{ login, user }}>
+        <OneCloudContext.Provider value={{ login, user, submitAccessRequest }}>
             {children}
         </OneCloudContext.Provider>
     );
