@@ -148,8 +148,8 @@ export default function Signin() {
           <div className="text-center text-sm text-gray-600">
             <p>
               Don’t have an account?{" "}
-              <Link to={'/signup'} className="text-green-600 hover:text-green-700 font-medium cursor-pointer">
-                Sign up
+              <Link to={'/getonboard'} className="text-green-600 hover:text-green-700 font-medium cursor-pointer">
+                Get OnBoard
               </Link>
             </p>
           </div>

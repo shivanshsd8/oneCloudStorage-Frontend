@@ -1,10 +1,12 @@
 import axios from "axios";
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const OneCloudContext = createContext();
 
 export default function OneCloudProvider({ children }) {
     const [user, setUser] = useState(null);
+    const navigate = useNavigate()
 
     async function login({ email, password, country, projectType }) {
         if (!email || !password || !country || !projectType) {
@@ -54,12 +56,12 @@ export default function OneCloudProvider({ children }) {
     async function submitAccessRequest({ email, ccode, number, recaptchaToken }) {
         const url = "https://www.onecloudstorage.com/verifyAMS.php";
         const formData = new URLSearchParams();
-    
+
         formData.append("email1", email);
         formData.append("ccode", ccode);
         formData.append("number1", number);
         formData.append("g-recaptcha-response", recaptchaToken);
-    
+
         try {
             const response = await fetch(url, {
                 method: "POST",
@@ -68,11 +70,11 @@ export default function OneCloudProvider({ children }) {
                 },
                 body: formData.toString(),
             });
-    
+
             if (!response.ok) {
                 throw new Error(`Server returned ${response.status}`);
             }
-    
+
             const html = await response.text();
             const extractedEmail = extractEmailFromHTML(html);
             return { html, extractedEmail };
@@ -90,8 +92,45 @@ export default function OneCloudProvider({ children }) {
         return match ? match[0] : null;
     }
 
+    async function getOnBoard(redirectURL, email, phone, name, recaptchaToken) {
+        try {
+            const formData = new URLSearchParams();
+            formData.append("email", email);
+            formData.append("number", phone);
+            formData.append("cname", name);
+            formData.append("g-recaptcha-response", recaptchaToken);
+
+            const response = await fetch(redirectURL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: formData.toString(),
+            });
+
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status}`);
+            }
+
+            const html = await response.text();
+            const extractedEmail = extractEmailFromHTML(html);
+
+            if (extractedEmail) {
+                console.log(`Thank you for onboarding: ${extractedEmail}`);
+                // Navigate to the Thank You page and pass the email as state
+                navigate("/getonboard-thankyou", { state: { email: extractedEmail } });
+            } else {
+                console.error("Could not extract email from response.");
+            }
+            return { html, extractedEmail };
+        } catch (err) {
+            console.error("Error in getOnBoard:", err);
+            return null;
+        }
+    }
+
     return (
-        <OneCloudContext.Provider value={{ login, user, submitAccessRequest }}>
+        <OneCloudContext.Provider value={{ login, user, submitAccessRequest, getOnBoard }}>
             {children}
         </OneCloudContext.Provider>
     );

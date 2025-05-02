@@ -6,9 +6,10 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Signin from './pages/Signin';
 import NotFound from './pages/NotFound';
 import ErrorBoundary from './components/ErrorBoundary';
-import SignupRedirect from './pages/SignupRedirect';
 import EnquirySubmitThankYouPage from './pages/EnquirySubmitThankYouPage';
 import EnquiryForm from './pages/EnquiryForm';
+import GetOnBoard from './pages/GetOnBoard';
+import GetOnBoardThankYouPage from './pages/GetOnBoardThankYouPage';
 
 function App() {
   return (
@@ -19,9 +20,10 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="signin" element={<Signin />} />
-              <Route path="signup" element={<SignupRedirect />} />
               <Route path="enquiry" element={<EnquiryForm />} />
+              <Route path="/getonboard" element={<GetOnBoard />} />
               <Route path="thank-you" element={<EnquirySubmitThankYouPage />} />
+              <Route path="getonboard-thankyou" element={<GetOnBoardThankYouPage />} />
               <Route path="privacy-policy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound />} /> {/* 404 fallback route */}
             </Route>
